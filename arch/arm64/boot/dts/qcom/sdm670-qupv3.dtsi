@@ -167,7 +167,7 @@
 		pinctrl-0 = <&qupv3_se4_i2c_active>;
 		pinctrl-1 = <&qupv3_se4_i2c_sleep>;
 		qcom,wrapper-core = <&qupv3_0>;
-		status = "disabled";
+		status = "okay";
 	};
 
 	qupv3_se5_i2c: i2c@894000 {
@@ -294,7 +294,7 @@
 		dmas = <&gpi_dma0 0 2 1 64 0>,
 			<&gpi_dma0 1 2 1 64 0>;
 		dma-names = "tx", "rx";
-		status = "disabled";
+		status = "okay";
 	};
 
 	qupv3_se3_spi: spi@88c000 {
@@ -329,9 +329,6 @@
 		clocks = <&clock_gcc GCC_QUPV3_WRAP0_S4_CLK>,
 			<&clock_gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
 			<&clock_gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
-		pinctrl-names = "default", "sleep";
-		pinctrl-0 = <&qupv3_se4_spi_active>;
-		pinctrl-1 = <&qupv3_se4_spi_sleep>;
 		interrupts = <GIC_SPI 605 0>;
 		spi-max-frequency = <50000000>;
 		qcom,wrapper-core = <&qupv3_0>;

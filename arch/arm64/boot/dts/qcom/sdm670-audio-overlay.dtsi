@@ -152,19 +152,12 @@
 			   "analog-codec", "msm_sdw_codec",
 			   "msm-ext-disp-audio-codec-rx";
 
-	qcom,wsa-max-devs = <2>;
-	qcom,wsa-devs = <&wsa881x_211_en>, <&wsa881x_212_en>,
-			<&wsa881x_213_en>, <&wsa881x_214_en>;
-	qcom,wsa-aux-dev-prefix = "SpkrLeft", "SpkrRight",
-				  "SpkrLeft", "SpkrRight";
+	qcom,wsa-max-devs = <0>;
 };
 
 &soc {
 	wcd_usbc_analog_en1_gpio: msm_cdc_pinctrl_usbc_audio_en1 {
 		compatible = "qcom,msm-cdc-pinctrl";
-		pinctrl-names = "aud_active", "aud_sleep";
-		pinctrl-0 = <&wcd_usbc_analog_en1_active>;
-		pinctrl-1 = <&wcd_usbc_analog_en1_idle>;
 	};
 
 	cdc_pdm_gpios: cdc_pdm_pinctrl {

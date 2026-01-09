@@ -200,25 +200,14 @@
 		label = "gpio-keys";
 
 		pinctrl-names = "default";
-		pinctrl-0 = <&key_cam_snapshot_default
-			     &key_cam_focus_default
-			     &key_vol_up_default>;
+		pinctrl-0 = < &key_vol_up_default
+			     &key_vol_down_default>;
 
-		cam_snapshot {
-			label = "cam_snapshot";
-			gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
+		vol_down {
+			label = "volume_down";
+			gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
 			linux,input-type = <1>;
-			linux,code = <766>;
-			gpio-key,wakeup;
-			debounce-interval = <15>;
-			linux,can-disable;
-		};
-
-		cam_focus {
-			label = "cam_focus";
-			gpios = <&tlmm 92 GPIO_ACTIVE_HIGH>;
-			linux,input-type = <1>;
-			linux,code = <528>;
+			linux,code = <114>;
 			gpio-key,wakeup;
 			debounce-interval = <15>;
 			linux,can-disable;
@@ -226,7 +215,7 @@
 
 		vol_up {
 			label = "volume_up";
-			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
+			gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
 			linux,input-type = <1>;
 			linux,code = <115>;
 			gpio-key,wakeup;
