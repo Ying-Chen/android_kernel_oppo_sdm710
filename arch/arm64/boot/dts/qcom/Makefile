@@ -1,3 +1,16 @@
+ifeq ($(CONFIG_MACH_OPLUS),y)
+
+ifeq ($(CONFIG_MACH_OPLUS_SDM710),y)
+ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
+	dtbo-$(CONFIG_MACH_OPLUS_RENO) += \
+		18097-sdm710-overlay.dtbo
+
+18097-sdm710-overlay.dtbo-base := 18097-sdm710.dtb
+endif # CONFIG_BUILD_ARM64_DT_OVERLAY
+endif # CONFIG_MACH_OPLUS_SDM710
+
+else # CONFIG_MACH_OPLUS
+
 dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb msm8916-mtp.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
@@ -673,6 +686,8 @@ dtb-$(CONFIG_ARCH_SDM429) += sdm429-mtp.dtb \
 endif
 
 dtb-$(CONFIG_ARCH_SDM845_VM) += sdm845-vm.dtb
+
+endif # CONFIG_MACH_OPLUS
 
 always		:= $(dtb-y)
 subdir-y	:= $(dts-dirs)

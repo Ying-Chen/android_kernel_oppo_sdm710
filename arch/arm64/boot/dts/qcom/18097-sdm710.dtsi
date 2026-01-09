@@ -1,0 +1,446 @@
+/* Copyright (c) 2018, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "dsi-panel-oppo18081samsung-ams641rw01-1080-2340.dtsi"
+
+&cam_sensor_rear {
+    rgltr-min-voltage = <1800000 1100000 2900000 1800000 0>;
+    rgltr-max-voltage = <1800000 1100000 2900000 1800000 0>;
+    gpios = <&tlmm 15 0>,
+            <&tlmm 21 0>;
+};
+
+&cam_sensor_front {
+    gpios = <&tlmm 14 0>,
+            <&tlmm 9 0>;
+};
+
+&cam_sensor_rear_aux {
+    rgltr-min-voltage = <1800000 2850000 1200000 0>;
+    rgltr-max-voltage = <1800000 2850000 1200000 0>;
+    gpios = <&tlmm 13 0>,
+            <&tlmm 8 0>;
+};
+
+&camera_rear_ldo {
+    gpio = <&tlmm 41 0>;
+};
+
+&camera_vana_ldo {
+    regulator-min-microvolt = <2900000>;
+    regulator-max-microvolt = <2900000>;
+    gpio = <&tlmm 95 0>;
+};
+
+&cdc_dmic12_gpios_sleep {
+    mux {
+        function = "gpio";
+    };
+
+    config {
+        /delete-property/ output-low;
+        input-enable;
+    };
+};
+
+&cdc_dmic34_gpios_sleep {
+    mux {
+        function = "gpio";
+    };
+
+    config {
+        /delete-property/ pull-down;
+        bias-disable;
+    };
+};
+
+&dai_mi2s1 {
+    compatible = "qcom,msm-dai-q6-mi2s";
+    qcom,msm-dai-q6-mi2s-dev-id = <1>;
+    qcom,msm-mi2s-rx-lines = <1>;
+    qcom,msm-mi2s-tx-lines = <0>;
+    pinctrl-names = "default", "sleep";
+    pinctrl-0 = <&sec_mi2s_mclk_active>;
+    pinctrl-1 = <&sec_mi2s_mclk_sleep>;
+};
+
+&dai_mi2s2 {
+    compatible = "qcom,msm-dai-q6-mi2s";
+    qcom,msm-dai-q6-mi2s-dev-id = <2>;
+    qcom,msm-mi2s-rx-lines = <1>;
+    qcom,msm-mi2s-tx-lines = <2>;
+    pinctrl-names = "default", "sleep";
+    pinctrl-0 = <&ter_mi2s_active &ter_mi2s_sd0_active &ter_mi2s_sd1_active>;
+    pinctrl-1 = <&ter_mi2s_sleep &ter_mi2s_sd0_sleep &ter_mi2s_sd1_sleep>;
+};
+
+&eeprom_rear {
+    rgltr-min-voltage = <1800000 1100000 2900000 1800000 0>;
+    rgltr-max-voltage = <1800000 1100000 2900000 1800000 0>;
+    gpios = <&tlmm 15 0>,
+            <&tlmm 21 0>;
+};
+
+&eeprom_front {
+    rgltr-min-voltage = <1800000 2850000 1050000 0>;
+    rgltr-max-voltage = <1800000 2850000 1050000 0>;
+    gpios = <&tlmm 14 0>,
+            <&tlmm 9 0>;
+};
+
+&eeprom_rear_aux {
+    rgltr-min-voltage = <1800000 2850000 1200000 0>;
+    rgltr-max-voltage = <1800000 2850000 1200000 0>;
+    gpios = <&tlmm 13 0>,
+            <&tlmm 8 0>;
+};
+
+&int_codec {
+    qcom,sec-mi2s-gpios = <&sec_mi2s_gpios>;
+};
+
+&lpi_tlmm {
+    sec_mi2s_bclk {
+        sec_mi2s_bclk_sleep: sec_mi2s_bclk_sleep {
+            mux {
+                pins = "gpio8";
+                function = "func3";
+            };
+
+            config {
+                pins = "gpio8";
+                drive-strength = <2>;   /* 2 mA */
+            };
+        };
+
+        sec_mi2s_bclk_active: sec_mi2s_bclk_active {
+            mux {
+                pins = "gpio8";
+                function = "func3";
+            };
+
+            config {
+                pins = "gpio8";
+                drive-strength = <8>;   /* 8 mA */
+            };
+        };
+    };
+
+    sec_mi2s_ws {
+        sec_mi2s_ws_sleep: sec_mi2s_ws_sleep {
+            mux {
+                pins = "gpio9";
+                function = "func3";
+            };
+
+            config {
+                pins = "gpio9";
+                drive-strength = <2>;   /* 2 mA */
+            };
+        };
+
+        sec_mi2s_ws_active: sec_mi2s_ws_active {
+            mux {
+                pins = "gpio9";
+                function = "func3";
+            };
+
+            config {
+                pins = "gpio9";
+                drive-strength = <8>;   /* 8 mA */
+            };
+        };
+    };
+
+    sec_mi2s_sd0 {
+        sec_mi2s_sd0_sleep: sec_mi2s_sd0_sleep {
+            mux {
+                pins = "gpio10";
+                function = "func4";
+            };
+
+            config {
+                pins = "gpio10";
+                drive-strength = <2>;   /* 2 mA */
+            };
+        };
+
+        sec_mi2s_sd0_active: sec_mi2s_sd0_active {
+            mux {
+                pins = "gpio10";
+                function = "func4";
+            };
+
+            config {
+                pins = "gpio10";
+                drive-strength = <8>;   /* 8 mA */
+            };
+        };
+    };
+};
+
+&pm660_gpios {
+    clk_out {
+        clk_out_default: clk_out_default{
+            pins = "gpio2";
+            function = "func1"; /* Special Function 1 */
+            bias-disable; /* No Pull */
+            power-source = <0>; /* VIN0 */
+            output-low; /* digital output, no invert */
+            input-disable; /* prevent GPIO from being set to DIO */
+        };
+    };
+};
+
+&qupv3_se9_i2c {
+    status = "okay";
+    synaptics17081@20 {
+        compatible = "synaptics-s3706";
+        reg = <0x20>;
+        chip-name = "S3706";
+
+        /* Interrupt && Irq-gpio */
+        interrupt-parent = <&tlmm>;
+        interrupts = <125 0x00>;
+
+        /* Power Config */
+        enable2v8_gpio = <&pm660_gpios 13 0x1>;
+        vdd_2v8-supply = <&pm660l_l2>;
+        vcc_1v8-supply = <&pm660_l8>;
+        vdd_2v8_volt = <2960000>;
+
+        /* Other HW Resource */
+        irq-gpio = <&tlmm 125 0x2008>;
+        reset-gpio = <&tlmm 119 0x1>; // use gpio 199 for evt
+        reset_t0-gpio = <&tlmm 99 0x1>; // use gpio 99 for t0
+        pinctrl-names = "default";
+        pinctrl-0 = <&ts_int_active &ts_reset_active>;
+
+        touchpanel,max-num-support = <10>;
+        touchpanel,tx-rx-num = <16 33>;
+        touchpanel,panel-coords = <1080 2340>;
+        touchpanel,display-coords = <1080 2340>;
+        touchpanel,touchmajor-limit = <0 54>;
+
+        platform_support_project = <18097 18098 18397>;
+        platform_support_project_dir = <18097 18097 18097>;
+        platform_support_project_commandline = "default_commandline", "default_commandline", "default_commandline";
+
+        /* SW Support Feature Control */
+        black_gesture_support;
+        fw_edge_limit_support;
+        fw_corner_limit_support;
+        // spurious_fingerprint_support;
+        charger_pump_support;
+        game_switch_support;
+        face_detect_support;
+        smart_gesture_support;
+        pressure_report_support;
+        fw_update_app_support;
+        fingerprint_underscreen_support;
+        rt155_fdreplace_rt59_support;
+        report_point_first_support;
+        report_120hz_support;
+        health_monitor_v2_support;
+        /*
+         * Virtual Key Config:
+         * 1:touchpanel,button-type: <virtualkey_type  supportted_button-map>
+         * virtualkey_type:
+         * Type 1: using board_properties
+         * Type 2: using same IC (button zone&& touch zone are seprate)
+         * Type 3: using diffrent IC (button zone&& touch zone are seprate)
+         * Type 4: No need of virtual key process
+         * supportted_button-map:select|menu|home|back
+         *
+         * 2:touchpanel,button-map
+         * type (X1,Y1)(X2,Y2)(X3,Y3)(Width_X,Hight_Y)--Only when button-type is 0
+         */
+        touchpanel,button-type = <4>;
+        touchpanel.button-TRx = <0 0>;
+    };
+};
+
+&soc {
+    /delete-node/ cam_sensor_rgbr_vdig;
+    /delete-node/ spi@880000;
+    /delete-node/ i2c@888000;
+    /delete-node/ i2c@890000;
+    /delete-node/ qupv3_se7_4uart_pins;
+
+    camera_v_custom1_ldo: gpio-regulator@5 {
+        compatible = "regulator-fixed";
+        reg = <0x05 0x00>;
+        regulator-name = "camera_v_custom1_ldo";
+        regulator-min-microvolt = <1800000>;
+        regulator-max-microvolt = <1800000>;
+        regulator-enable-ramp-delay = <233>;
+        enable-active-high;
+        gpio = <&tlmm 136 0>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&cam_sensor_rear_vana2>;
+        vin-supply = <&pm660_s4>;
+    };
+
+    camera_front_vana_ldo: gpio-regulator@6 {
+        compatible = "regulator-fixed";
+        reg = <0x06 0x00>;
+        regulator-name = "camera_front_vana_ldo";
+        regulator-min-microvolt = <2850000>;
+        regulator-max-microvolt = <2850000>;
+        regulator-enable-ramp-delay = <233>;
+        enable-active-high;
+        gpio = <&tlmm 39 0>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&cam_sensor_front_vana>;
+        vin-supply = <&pm660l_bob>;
+    };
+
+    camera_sub_vdig_ldo: gpio-regulator@7 {
+        compatible = "regulator-fixed";
+        reg = <0x07 0x00>;
+        regulator-name = "camera_sub_vdig_ldo";
+        regulator-min-microvolt = <1200000>;
+        regulator-max-microvolt = <1200000>;
+        regulator-enable-ramp-delay = <233>;
+        enable-active-high;
+        gpio = <&tlmm 116 0>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&cam_sensor_sub_vdig>;
+        vin-supply = <&pm660_s6>;
+    };
+
+    devinfo {
+        compatible = "oppo-devinfo";
+
+        qcom,devinfo-vadc = <&pm660_vadc>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&sub_mainboard_active>;
+    };
+
+    dsi_oppo18081samsung_ams641rw01_1080_2340_cmd_display: qcom,dsi-display@20 {
+        compatible = "qcom,dsi-display";
+        label = "dsi_oppo18081samsung_ams641rw01_1080_2340_cmd_display";
+        qcom,display-type = "primary";
+
+        qcom,dsi-ctrl = <&mdss_dsi0>;
+        qcom,dsi-phy = <&mdss_dsi_phy0>;
+        clocks = <&mdss_dsi0_pll BYTECLK_MUX_0_CLK>,
+               <&mdss_dsi0_pll PCLK_MUX_0_CLK>;
+        clock-names = "mux_byte_clk", "mux_pixel_clk";
+
+        pinctrl-names = "panel_active", "panel_suspend";
+        pinctrl-0 = <&sde_dsi_active &sde_te_active>;
+        pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
+        qcom,platform-te-gpio = <&tlmm 10 0>;
+        qcom,platform-reset-gpio = <&tlmm 26 0>;
+        qcom,dsi-display-active;
+
+        qcom,dsi-panel = <&dsi_oppo18081samsung_ams641rw01_1080_2340_cmd>;
+        vddio-supply = <&pm660_l8>;
+        vdda-3p3-supply = <&pm660l_l6>;
+    };
+
+    nfc_chipset {
+        compatible = "oplus-nfc-chipset";
+        chipset-18097 = "NQ330";
+    };
+
+    qupv3_se0_spi: spi@880000 {
+        status = "okay";
+
+        ese@0 {
+            compatible = "nxp,p61";
+            reg = <0>;
+            spi-max-frequency = <8000000>;
+        };
+    };
+
+    qupv3_se4_i2c: i2c@890000 {
+        status = "okay";
+
+        ak4376@10 {
+            compatible = "akm,ak4376";
+            reg = <0x10>;
+            ak4376,reset-gpio = <&tlmm 50 0x00>;
+            /* audio-vdd-enable-gpio = <&tlmm 60 0x00>; */
+            status = "okay";
+        };
+
+        nq@28 {
+            compatible = "nxp,pn544";
+            reg = <0x28>;
+            nxp,pn544-irq = <&pm660l_gpios 4 0x00>;
+            nxp,pn544-ven = <&pm660l_gpios 5 0x00>;
+            nxp,pn544-fw-dwnld = <&pm660l_gpios 3 0x00>;
+            nxp,pn544-ese-pwr = <&pm660l_gpios 8 0x00>;
+            qcom,nq-clkreq = <&pm660_gpios 4 0x00>;
+            interrupt-parent = <&pm660l_gpios>;
+            qcom,clk-src = "BBCLK3";
+            interrupts = <4 0>;
+            interrupt-names = "nfc_irq";
+            pinctrl-names = "nfc_default";
+            pinctrl-0 = <&nfc_clk_default>;
+            clocks = <&clock_rpmh RPMH_LN_BB_CLK3>;
+            clock-names = "ref_clk";
+        };
+
+        tfa98xx@35 {
+            compatible = "nxp,tfa98xx";
+            reg = <0x35>;
+            /* nxp,rst-ctrl-gpio = <&tlmm 80 0x00>; */
+            tfa9890_vdd-supply = <&pm660_l13>;
+            status = "okay";
+        };
+    };
+
+    sec_mi2s_gpios: sec_pinctrl {
+        compatible = "qcom,msm-cdc-pinctrl";
+        pinctrl-names = "aud_active", "aud_sleep";
+        pinctrl-0 = <&sec_mi2s_bclk_active &sec_mi2s_ws_active &sec_mi2s_sd0_active>;
+        pinctrl-1 = <&sec_mi2s_bclk_sleep &sec_mi2s_ws_sleep &sec_mi2s_sd0_sleep>;
+        qcom,lpi-gpios;
+    };
+};
+
+&tlmm {
+    /delete-node/ qupv3_se2_i2c_pins;
+
+    sec_mi2s_mclk {
+        sec_mi2s_mclk_sleep: sec_mi2s_mclk_sleep {
+            mux {
+                pins = "gpio79";
+                function = "sec_mi2s";
+            };
+
+            config {
+                pins = "gpio79";
+                drive-strength = <2>;   /* 2 mA */
+                bias-pull-down;         /* PULL DOWN */
+                output-low;
+            };
+        };
+
+        sec_mi2s_mclk_active: sec_mi2s_mclk_active {
+            mux {
+                pins = "gpio79";
+                function = "sec_mi2s";
+            };
+
+            config {
+                pins = "gpio79";
+                drive-strength = <8>;   /* 8 mA */
+                bias-disable;           /* NO PULL */
+                output-high;
+            };
+        };
+    };
+};
