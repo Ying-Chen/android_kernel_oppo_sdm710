@@ -130,9 +130,9 @@ static void init_project_version(void) {
             index++;
         } while (index < sizeof(pcb_str) / sizeof(struct pcb_match));
 
-        pr_err("KE Project:%d, Audio:%d, nRF:%d, PCB:%s\n", g_project->nDataBCDT.ProjectNo,
+        pr_info("KE Project:%d, Audio:%d, nRF:%d, PCB:%s\n", g_project->nDataBCDT.ProjectNo,
                g_project->nDataBCDT.AudioIdx, g_project->nDataSCDT.RF, PCB_version_name);
-        pr_err("OCP: %d 0x%x %c %d 0x%x %c\n", g_project->nDataSCDT.PmicOcp[0],
+        pr_info("OCP: %d 0x%x %c %d 0x%x %c\n", g_project->nDataSCDT.PmicOcp[0],
                g_project->nDataSCDT.PmicOcp[1], g_project->nDataSCDT.PmicOcp[2],
                g_project->nDataSCDT.PmicOcp[3], g_project->nDataSCDT.PmicOcp[4],
                g_project->nDataSCDT.PmicOcp[5]);
@@ -141,34 +141,34 @@ static void init_project_version(void) {
     if (is_new_cdt()) {
         if (oppo_info) {
             remove_proc_entry("oppoVersion/operatorName", NULL);
-            pr_err("remove proc operatorName\n");
+            pr_info("remove proc operatorName\n");
             remove_proc_entry("oppoVersion/modemType", NULL);
-            pr_err("remove proc modemType\n");
+            pr_info("remove proc modemType\n");
         }
         if (oppo_info_temp) {
             remove_proc_entry("oplusVersion/operatorName", NULL);
-            pr_err("remove proc operatorName\n");
+            pr_info("remove proc operatorName\n");
             remove_proc_entry("oplusVersion/modemType", NULL);
-            pr_err("remove proc modemType\n");
+            pr_info("remove proc modemType\n");
         }
     } else {
         if (oppo_info) {
             remove_proc_entry("oppoVersion/RFType", NULL);
-            pr_err("remove proc RFType\n");
+            pr_info("remove proc RFType\n");
         }
         if (oppo_info_temp) {
             remove_proc_entry("oplusVersion/RFType", NULL);
-            pr_err("remove proc RFType\n");
+            pr_info("remove proc RFType\n");
         }
     }
 
-    pr_err("get_project:%d, is_new_cdt:%d, get_PCB_Version:%d, get_Oppo_Boot_Mode:%d, "
+    pr_info("get_project:%d, is_new_cdt:%d, get_PCB_Version:%d, get_Oppo_Boot_Mode:%d, "
            "get_Modem_Version:%d\n",
            get_project(), is_new_cdt(), get_PCB_Version(), get_Oppo_Boot_Mode(),
            get_Modem_Version());
-    pr_err("get_Operator_Version:%d, get_dtsiNo:%d, get_audio_project:%d\n", get_Operator_Version(),
+    pr_info("get_Operator_Version:%d, get_dtsiNo:%d, get_audio_project:%d\n", get_Operator_Version(),
            get_dtsiNo(), get_audio());
-    pr_err("oppo project info loading finished\n");
+    pr_info("oppo project info loading finished\n");
 }
 
 static bool cdt_integrity = false;
