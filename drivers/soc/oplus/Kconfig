@@ -4,3 +4,4 @@
 source "drivers/soc/oplus/oplus_devinfo/Kconfig"
 source "drivers/soc/oplus/oplus_mdmrst/Kconfig"
 source "drivers/soc/oplus/oplus_project/Kconfig"
+source "drivers/soc/oplus/project_info/Kconfig"

@@ -4,3 +4,4 @@
 obj-$(CONFIG_MACH_OPLUS) += oplus_devinfo/
 obj-$(CONFIG_MACH_OPLUS) += oplus_mdmrst/
 obj-$(CONFIG_MACH_OPLUS) += oplus_project/
+obj-$(CONFIG_MACH_OPLUS) += project_info/
