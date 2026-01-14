@@ -1,1 +1,2 @@
+source "drivers/soc/oplus/oplus_mdmrst/Kconfig"
 source "drivers/soc/oplus/oplus_project/Kconfig"
