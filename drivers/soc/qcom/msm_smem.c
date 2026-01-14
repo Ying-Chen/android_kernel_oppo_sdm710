@@ -1175,15 +1175,12 @@ static __init int modem_restart_late_init(void)
 	void *handle;
 	struct restart_notifier_block *nb;
 
-	if (scm_is_secure_device()) {
-		if (smem_dev)
-			smem_ramdump_dev = create_ramdump_device("smem",
-								 smem_dev);
-		if (IS_ERR_OR_NULL(smem_ramdump_dev)) {
-			LOG_ERR("%s: Unable to create smem ramdump device.\n",
-				__func__);
-			smem_ramdump_dev = NULL;
-		}
+	if (smem_dev)
+		smem_ramdump_dev = create_ramdump_device("smem", smem_dev);
+	if (IS_ERR_OR_NULL(smem_ramdump_dev)) {
+		LOG_ERR("%s: Unable to create smem ramdump device.\n",
+			__func__);
+		smem_ramdump_dev = NULL;
 	}
 
 	for (i = 0; i < ARRAY_SIZE(restart_notifiers); i++) {
