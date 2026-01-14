@@ -2011,6 +2011,14 @@
 		qcom,guard-memory;
 	};
 
+	qcom,oembackup_sharedmem@0 {
+		compatible = "qcom,sharedmem-uio";
+		reg = <0x0 0x00100000>;
+		reg-names = "oembackup";
+		qcom,client-id = <0x00000004>;
+		qcom,guard-memory;
+	};
+
 	qcom,msm_gsi {
 		compatible = "qcom,msm_gsi";
 	};
