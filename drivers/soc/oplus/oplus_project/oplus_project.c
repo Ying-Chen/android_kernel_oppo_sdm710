@@ -24,8 +24,8 @@
 
 #define SMEM_PROJECT 135
 
-#define UINT2Ptr(n) (uint32_t*)(n)
-#define Ptr2UINT32(p) (uint32_t)(p)
+#define UINT2Ptr(n) (uint32_t*)(uintptr_t)(n)
+#define Ptr2UINT32(p) (uintptr_t)(p)
 
 #define PROJECT_VERSION (0x1)
 #define PCB_VERSION (0x2)
@@ -131,11 +131,11 @@ static void init_project_version(void) {
         } while (index < sizeof(pcb_str) / sizeof(struct pcb_match));
 
         pr_info("KE Project:%d, Audio:%d, nRF:%d, PCB:%s\n", g_project->nDataBCDT.ProjectNo,
-               g_project->nDataBCDT.AudioIdx, g_project->nDataSCDT.RF, PCB_version_name);
+                g_project->nDataBCDT.AudioIdx, g_project->nDataSCDT.RF, PCB_version_name);
         pr_info("OCP: %d 0x%x %c %d 0x%x %c\n", g_project->nDataSCDT.PmicOcp[0],
-               g_project->nDataSCDT.PmicOcp[1], g_project->nDataSCDT.PmicOcp[2],
-               g_project->nDataSCDT.PmicOcp[3], g_project->nDataSCDT.PmicOcp[4],
-               g_project->nDataSCDT.PmicOcp[5]);
+                g_project->nDataSCDT.PmicOcp[1], g_project->nDataSCDT.PmicOcp[2],
+                g_project->nDataSCDT.PmicOcp[3], g_project->nDataSCDT.PmicOcp[4],
+                g_project->nDataSCDT.PmicOcp[5]);
     }
 
     if (is_new_cdt()) {
@@ -163,11 +163,11 @@ static void init_project_version(void) {
     }
 
     pr_info("get_project:%d, is_new_cdt:%d, get_PCB_Version:%d, get_Oppo_Boot_Mode:%d, "
-           "get_Modem_Version:%d\n",
-           get_project(), is_new_cdt(), get_PCB_Version(), get_Oppo_Boot_Mode(),
-           get_Modem_Version());
-    pr_info("get_Operator_Version:%d, get_dtsiNo:%d, get_audio_project:%d\n", get_Operator_Version(),
-           get_dtsiNo(), get_audio());
+            "get_Modem_Version:%d\n",
+            get_project(), is_new_cdt(), get_PCB_Version(), get_Oppo_Boot_Mode(),
+            get_Modem_Version());
+    pr_info("get_Operator_Version:%d, get_dtsiNo:%d, get_audio_project:%d\n",
+            get_Operator_Version(), get_dtsiNo(), get_audio());
     pr_info("oppo project info loading finished\n");
 }
 
@@ -317,7 +317,7 @@ uint32_t get_oppo_feature(enum F_INDEX index) {
 EXPORT_SYMBOL(get_oppo_feature);
 
 #define SERIALNO_LEN 16
-unsigned int get_serialID() {
+unsigned int get_serialID(void) {
     unsigned int serial_id = 0xFFFFFFFF;
 
     char* ptr;
@@ -465,7 +465,7 @@ static void update_telephony_manifest(struct proc_dir_entry* parent_1,
 static int project_read_func(struct seq_file* s, void* v) {
     void* p = s->private;
 
-    switch (Ptr2UINT32(p)) {
+    switch ((uint32_t)Ptr2UINT32(p)) {
         case PROJECT_VERSION:
             if (get_project() > 0x20000) {
                 seq_printf(s, "%X", get_project());
@@ -521,7 +521,7 @@ static int project_read_func(struct seq_file* s, void* v) {
     return 0;
 }
 
-unsigned int get_cdt_version() {
+unsigned int get_cdt_version(void) {
     init_project_version();
 
     return g_project ? g_project->Version : 0;
