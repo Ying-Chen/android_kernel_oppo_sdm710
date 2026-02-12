@@ -2,9 +2,12 @@ ifeq ($(CONFIG_MACH_OPLUS),y)
 
 ifeq ($(CONFIG_MACH_OPLUS_SDM710),y)
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
+	dtbo-$(CONFIG_MACH_OPLUS_R17) += \
+		18081-sdm670-overlay.dtbo
 	dtbo-$(CONFIG_MACH_OPLUS_RENO) += \
 		18097-sdm710-overlay.dtbo
 
+18081-sdm670-overlay.dtbo-base := 18081-sdm670.dtb
 18097-sdm710-overlay.dtbo-base := 18097-sdm710.dtb
 endif # CONFIG_BUILD_ARM64_DT_OVERLAY
 endif # CONFIG_MACH_OPLUS_SDM710

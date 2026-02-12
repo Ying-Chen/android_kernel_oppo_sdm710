@@ -15,6 +15,12 @@ config MACH_OPLUS_SDM710
 
 menu "OPlus board selection"
 
+config MACH_OPLUS_R17
+  bool "OPPO R17 & R17 Pro board"
+  select MACH_OPLUS_SDM710
+  help
+    Support for OPPO R17 & R17 Pro
+
 config MACH_OPLUS_RENO
   bool "OPPO Reno board"
   select MACH_OPLUS_SDM710
