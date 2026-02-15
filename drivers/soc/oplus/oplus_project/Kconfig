@@ -6,3 +6,8 @@ config OPLUS_FEATURE_OPROJECT
   default n
   help
     define this config to define oplus project
+
+config TARGET_USE_OLDCDT
+  tristate "oldcdt enable or not for OPLUS"
+  help
+    define this config to define oldcdt enable or not

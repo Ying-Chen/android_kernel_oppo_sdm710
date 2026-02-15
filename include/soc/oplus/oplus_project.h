@@ -33,6 +33,7 @@ struct pcb_match {
     enum PCB_VERSION version;
     char* str;
 };
+#ifndef CONFIG_TARGET_USE_OLDCDT
 unsigned int get_cdt_version(void);
 unsigned int get_eng_version(void);
 unsigned int is_new_cdt(void);
@@ -54,5 +55,6 @@ int32_t get_Operator_Version(void);
 // eng cdt data for P or Q or R
 bool is_confidential(void);
 bool oppo_daily_build(void);
+#endif
 
 #endif

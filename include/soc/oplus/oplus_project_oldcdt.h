@@ -278,24 +278,29 @@ enum{
     SMALLBOARD_VERSION__UNKNOWN = 100,
 };
 
+#define OPPO_ENG_VERSION_NOT_INIT -1
+#define OCPCOUNTMAX 4
 typedef struct
 {
-    unsigned int    nProject;
-    unsigned int    nModem;
-    unsigned int    nOperator;
-    unsigned int    nPCBVersion;
-    unsigned int    nENGVersion;
-    unsigned int    isConfidential;
+    unsigned int    nproject;
+    unsigned char   nmodem;
+    unsigned char   noperator;
+    unsigned char   npcbversion;
+    unsigned char   noppobootmode;
+    unsigned char   npmicocp[OCPCOUNTMAX];
 } ProjectInfoCDTType_oldcdt;
 
-unsigned int get_project_oldcdt(void);
-unsigned int is_project_oldcdt(int project );
-unsigned int get_PCB_Version_oldcdt(void);
-unsigned int get_Modem_Version_oldcdt(void);
-unsigned int get_Operator_Version_oldcdt(void);
-unsigned int get_eng_version_oldcdt(void);
-int is_confidential_oldcdt(void);
-bool oppo_daily_build_oldcdt(void);
-int oppo_project_init_oldcdt(void);
+#ifdef CONFIG_TARGET_USE_OLDCDT
+int get_eng_version(void);
+unsigned int is_new_cdt(void);
+unsigned int get_project(void);
+unsigned int is_project(int project);
+unsigned char get_Oppo_Boot_Mode(void);
+unsigned char get_PCB_Version(void);
+unsigned char get_Modem_Version(void);
+unsigned char get_Operator_Version(void);
+bool is_confidential(void);
+bool oppo_daily_build(void);
+#endif
 
 #endif
