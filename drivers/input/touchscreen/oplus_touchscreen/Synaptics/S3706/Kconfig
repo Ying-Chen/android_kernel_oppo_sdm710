@@ -1,7 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
-# Copyright (C) 2018-2020 Oplus. All rights reserved.
-
 config TOUCHSCREEN_SYNAPTICS_S3706
-  bool "TP Synaptics_S3508 IC enable or not for OPPO"
+  bool "TP Synaptics_S3706 IC enable or not for OPPO"
   help
-	  say Y to enable driver for Touchpanel useing synaptics s3706
+	  say Y to enable driver for Touchpanel using synaptics s3706

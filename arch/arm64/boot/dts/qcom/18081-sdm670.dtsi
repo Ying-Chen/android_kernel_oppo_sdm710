@@ -202,10 +202,9 @@
         interrupts = <125 0x00>;
 
         /* Power Config */
-        enable2v8_gpio = <&pm660_gpios 13 0x1>;
-        vdd_2v8-supply = <&pm660l_l2>;
+		//enable2v8_gpio = <&tlmm 15 0x1>;
+        vdd_2v8-supply = <&touchpanel_vdd>;
         vcc_1v8-supply = <&pm660_l8>;
-        vdd_2v8_volt = <2960000>;
 
         /* Other HW Resource */
         irq-gpio = <&tlmm 125 0x2008>;
@@ -219,10 +218,6 @@
         touchpanel,display-coords = <1080 2340>;
         touchpanel,touchmajor-limit = <0 54>;
 
-        platform_support_project = <18081 18085>;
-        platform_support_project_dir = <18081 18085>;
-        platform_support_project_commandline = "default_commandline", "default_commandline", "default_commandline";
-
         /* SW Support Feature Control */
         black_gesture_support;
         fw_edge_limit_support;
@@ -235,10 +230,7 @@
         pressure_report_support;
         fw_update_app_support;
         fingerprint_underscreen_support;
-        rt155_fdreplace_rt59_support;
-        report_point_first_support;
-        report_120hz_support;
-        health_monitor_v2_support;
+
         /*
          * Virtual Key Config:
          * 1:touchpanel,button-type: <virtualkey_type  supportted_button-map>
@@ -377,6 +369,14 @@
         pinctrl-1 = <&sec_mi2s_bclk_sleep &sec_mi2s_ws_sleep &sec_mi2s_sd0_sleep>;
         qcom,lpi-gpios;
     };
+
+	touchpanel_vdd: touchpanel_vdd {
+		compatible = "regulator-fixed";
+		regulator-name = "touchpanel_vdd";
+		startup-delay-us = <0>;
+		enable-active-high;
+		gpio = <&tlmm 49 0>;
+	};
 };
 
 &tlmm {

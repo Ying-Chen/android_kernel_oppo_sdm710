@@ -1,4 +1,7 @@
-# SPDX-License-Identifier: GPL-2.0-only
-# Copyright (C) 2018-2020 Oplus. All rights reserved.
+#
+# Makefile for the touchscreen drivers.
+#
+
+# Each configuration option enables a list of files.
 
 obj-$(CONFIG_TOUCHSCREEN_OPLUS) += touch_interfaces.o

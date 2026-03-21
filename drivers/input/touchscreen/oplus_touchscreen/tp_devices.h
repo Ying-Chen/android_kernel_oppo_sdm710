@@ -1,12 +1,21 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/*
- * Copyright (C) 2018-2020 Oplus. All rights reserved.
- */
-
+/***************************************************
+ * File:tp_devices.h
+ * VENDOR_EDIT
+ * Copyright (c)  2008- 2030  Oppo Mobile communication Corp.ltd.
+ * Description:
+ *             tp dev
+ * Version:1.0:
+ * Date created:2016/09/02
+ * Author: Tong.han@Bsp.Driver
+ * TAG: BSP.TP.Init
+ *
+ * -------------- Revision History: -----------------
+ *  <author >  <data>  <version>  <desc>
+ ***************************************************/
 #ifndef OPPO_TP_DEVICES_H
 #define OPPO_TP_DEVICES_H
-// device list define
-typedef enum tp_dev {
+//device list define
+typedef enum tp_dev{
     TP_OFILM,
     TP_BIEL,
     TP_TRULY,
@@ -18,8 +27,7 @@ typedef enum tp_dev {
     TP_SAMSUNG,
     TP_DSJM,
     TP_BOE_B8,
-    TP_BOE_B3,
-    TP_CDOT,
+    TP_TM,
     TP_INNOLUX,
     TP_HIMAX_DPT,
     TP_AUO,
@@ -27,11 +35,8 @@ typedef enum tp_dev {
     TP_HUAXING,
     TP_HLT,
     TP_DJN,
-    TP_INX,
-    TP_LS,
-    TP_TXD,
     TP_UNKNOWN,
-} tp_dev;
+}tp_dev;
 
 struct tp_dev_name {
     tp_dev type;
@@ -39,3 +44,4 @@ struct tp_dev_name {
 };
 
 #endif
+

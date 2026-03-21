@@ -1,7 +1,17 @@
-/* SPDX-License-Identifier: GPL-2.0-only */
-/*
- * Copyright (C) 2018-2020 Oplus. All rights reserved.
- */
+/***************************************************
+ * File:synaptics_common.h
+ * VENDOR_EDIT
+ * Copyright (c)  2008- 2030  Oppo Mobile communication Corp.ltd.
+ * Description:
+ *             synaptics common driver
+ * Version:1.0:
+ * Date created:2016/09/02
+ * Author: Tong.han@Bsp.Driver
+ * TAG: BSP.TP.Init
+ * *
+ * -------------- Revision History: -----------------
+ *  <author >  <data>  <version>  <desc>
+ ***************************************************/
 
 #ifndef SYNAPTICS_FIRMWARE_V2_H
 #define SYNAPTICS_FIRMWARE_V2_H
@@ -10,8 +20,8 @@
 #include <linux/firmware.h>
 #include <linux/rtc.h>
 #include <linux/syscalls.h>
-#include <linux/time.h>
 #include <linux/timer.h>
+#include <linux/time.h>
 
 #define IMAGE_FILE_MAGIC_VALUE 0x4818472b
 #define FLASH_AREA_MAGIC_VALUE 0x7c05e516
@@ -39,7 +49,7 @@ struct area_descriptor {
 };
 
 struct block_data_v2 {
-    const unsigned char* data;
+    const unsigned char *data;
     unsigned int size;
     unsigned int flash_addr;
 };
@@ -61,29 +71,34 @@ struct boot_config {
     union {
         unsigned char i2c_address;
         struct {
-            unsigned char cpha : 1;
-            unsigned char cpol : 1;
-            unsigned char word0_b2__7 : 6;
+            unsigned char cpha:1;
+            unsigned char cpol:1;
+            unsigned char word0_b2__7:6;
         } __packed;
     };
-    unsigned char attn_polarity : 1;
-    unsigned char attn_drive : 2;
-    unsigned char attn_pullup : 1;
-    unsigned char word0_b12__14 : 3;
-    unsigned char used : 1;
+    unsigned char attn_polarity:1;
+    unsigned char attn_drive:2;
+    unsigned char attn_pullup:1;
+    unsigned char word0_b12__14:3;
+    unsigned char used:1;
     unsigned short customer_part_id;
     unsigned short boot_timeout;
-    unsigned short continue_on_reset : 1;
-    unsigned short word3_b1__15 : 15;
+    unsigned short continue_on_reset:1;
+    unsigned short word3_b1__15:15;
 } __packed;
 
-static inline unsigned int le2_to_uint(const unsigned char* src) {
-    return (unsigned int)src[0] + (unsigned int)src[1] * 0x100;
+static inline unsigned int le2_to_uint(const unsigned char *src)
+{
+    return (unsigned int)src[0] +
+            (unsigned int)src[1] * 0x100;
 }
 
-static inline unsigned int le4_to_uint(const unsigned char* src) {
-    return (unsigned int)src[0] + (unsigned int)src[1] * 0x100 + (unsigned int)src[2] * 0x10000 +
-           (unsigned int)src[3] * 0x1000000;
+static inline unsigned int le4_to_uint(const unsigned char *src)
+{
+    return (unsigned int)src[0] +
+            (unsigned int)src[1] * 0x100 +
+            (unsigned int)src[2] * 0x10000 +
+            (unsigned int)src[3] * 0x1000000;
 }
 
 #endif
