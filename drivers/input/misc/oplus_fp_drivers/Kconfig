@@ -15,4 +15,8 @@ config OPPO_FINGERPRINT_GOODIX_OPTICAL
        default n
        tristate "Fingerprint base on goodix optical chip"
 
+config OPPO_FINGERPRINT_SILEAD_OPTICAL
+       default n
+       tristate "Fingerprint base on silead optical chip"
+
 endif #OPPO_FINGERPRINT
