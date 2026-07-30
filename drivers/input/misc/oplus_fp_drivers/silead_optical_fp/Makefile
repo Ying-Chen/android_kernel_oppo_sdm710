@@ -1,2 +1,2 @@
-ccflags-y += -DQCOM_PLATFORM
-obj-y	+= silead_fp.o silead_fp_qcom.o
+ccflags-y += -DBSP_SIL_PLAT_QCOM
+obj-y	+= silead_fp_platform.o
